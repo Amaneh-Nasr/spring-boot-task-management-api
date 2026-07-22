@@ -1,4 +1,4 @@
-package com.example.usermanagementapi.exception;
+package com.example.taskmanagementapi.exception;
 
 public class ResourceNotFoundException extends RuntimeException {
 

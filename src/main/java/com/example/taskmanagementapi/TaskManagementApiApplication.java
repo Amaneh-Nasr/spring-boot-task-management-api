@@ -1,13 +1,13 @@
-package com.example.usermanagementapi;
+package com.example.taskmanagementapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class UserManagementApiApplication {
+public class TaskManagementApiApplication  {
 
 	public static void main(String[] args) {
-		SpringApplication.run(UserManagementApiApplication.class, args);
+		SpringApplication.run(TaskManagementApiApplication.class, args);
 	}
 
 }

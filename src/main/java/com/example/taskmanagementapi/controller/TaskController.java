@@ -1,11 +1,11 @@
-package com.example.usermanagementapi.controller;
+package com.example.taskmanagementapi.controller;
 
-import com.example.usermanagementapi.model.Task;
-import com.example.usermanagementapi.service.TaskService;
+import com.example.taskmanagementapi.model.Task;
+import com.example.taskmanagementapi.service.TaskService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import com.example.taskmanagementapi.model.Priority;
 import java.util.List;
 
 @RestController
@@ -21,6 +21,11 @@ public class TaskController {
     @GetMapping
     public List<Task> getTasks() {
         return service.getAll();
+    }
+
+    @GetMapping(params = "priority")
+    public List<Task> getTasksByPriority(@RequestParam Priority priority) {
+        return service.getByPriority(priority);
     }
 
     @GetMapping("/{id}")
