@@ -1,13 +1,12 @@
-package com.example.user_management_api;
+package com.example.taskmanagementapi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class UserManagementApiApplicationTests {
+class TaskManagementApiApplicationTests {
 
 	@Test
 	void contextLoads() {
 	}
-
 }
