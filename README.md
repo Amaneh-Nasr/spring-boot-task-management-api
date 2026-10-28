@@ -1,131 +1,79 @@
 # Task Management API
 
-A RESTful Task Management API built with **Java 17 and Spring Boot 3**.
+A RESTful API built with **Java 17 and Spring Boot 3** to create, manage, and filter tasks. Task data is stored in MySQL using Spring Data JPA.
 
-The application allows users to create, manage, update, delete, and filter tasks. Task data is stored persistently in a **MySQL/MariaDB database** using Spring Data JPA and Hibernate.
+The project also integrates a local AI model through Ollama to suggest task priorities.
 
 ## Features
 
-* Create, read, update, and delete tasks
-* Task priorities: `LOW`, `MEDIUM`, `HIGH`
-* Due dates
-* Filter tasks by priority
-* Automatic priority suggestion through `AIService`
-* MySQL/MariaDB database persistence
-* Exception handling
-* Swagger/OpenAPI documentation
-* Layered Controller–Service–Repository architecture
+- Create, retrieve, update, and delete tasks
+- Filter tasks by priority (`LOW`, `MEDIUM`, `HIGH`)
+- Manage due dates and completion status
+- AI-based priority suggestions using Ollama
+- Centralized exception handling
+- Swagger/OpenAPI documentation
 
 ## Technologies
 
-* Java 17
-* Spring Boot 3
-* Spring Web
-* Spring Data JPA
-* Hibernate
-* MySQL / MariaDB
-* Maven
-* Lombok
-* Swagger / OpenAPI
+Java 17 · Spring Boot 3 · Spring Data JPA · MySQL · Maven · Ollama · Swagger/OpenAPI
 
 ## API Endpoints
 
-| Method | Endpoint               | Description        |
-| ------ | ---------------------- | ------------------ |
-| GET    | `/tasks`               | Get all tasks      |
-| GET    | `/tasks/{id}`          | Get a task by ID   |
-| POST   | `/tasks`               | Create a task      |
-| PUT    | `/tasks/{id}`          | Update a task      |
-| DELETE | `/tasks/{id}`          | Delete a task      |
-| GET    | `/tasks?priority=HIGH` | Filter by priority |
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/tasks` | Get all tasks |
+| GET | `/tasks/{id}` | Get a task by ID |
+| GET | `/tasks?priority=HIGH` | Filter by priority |
+| POST | `/tasks` | Create a task |
+| PUT | `/tasks/{id}` | Update a task |
+| DELETE | `/tasks/{id}` | Delete a task |
 
 ## Architecture
 
-The project follows a layered architecture:
-
 ```text
-Client / Postman
-       │
-       ▼
+Client
+  |
+  v
 TaskController
-       │
-       ▼
-TaskService
-       │
-       ├──► AIService
-       │
-       ▼
+  |
+  v
+TaskService ----> AIService ----> Ollama
+  |
+  v
 TaskRepository
-       │
-       ▼
-MySQL / MariaDB
+  |
+  v
+MySQL
 ```
 
-* **Controller** – handles HTTP requests
-* **Service** – contains business logic
-* **AIService** – suggests task priority when none is provided
-* **Repository** – handles database access
+- **Controller:** Handles HTTP requests.
+- **Service:** Contains business logic.
+- **Repository:** Handles database access.
+- **AIService:** Requests priority suggestions from Ollama.
 
-## Swagger UI
+## Run the Application
 
-After starting the application, Swagger UI is available at:
+**Prerequisites:** JDK 17, MySQL, Ollama, and the model `qwen2.5-coder:3b`.
 
-```text
-http://localhost:8080/swagger-ui/index.html
-```
+1. Clone the repository:
 
-Swagger can be used to view and test the REST API directly in the browser.
+   ```bash
+   git clone https://github.com/Amaneh-Nasr/spring-boot-task-management-api.git
+   cd spring-boot-task-management-api
+   ```
 
-## How to Run
+2. Configure the database connection and Ollama settings in `application.properties`.
 
-### 1. Clone the repository
+3. Start the application on Windows:
 
-```bash
-git clone https://github.com/Amaneh-Nasr/spring-boot-task-management-api.git
-```
+   ```powershell
+   .\mvnw.cmd spring-boot:run
+   ```
 
-### 2. Configure the database
+4. Open Swagger UI:
 
-Create a MySQL/MariaDB database and configure the connection in:
-
-```text
-src/main/resources/application.properties
-```
-
-Example:
-
-```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/taskdb
-spring.datasource.username=root
-spring.datasource.password=YOUR_PASSWORD
-```
-
-### 3. Run the application
-
-With IntelliJ IDEA, run:
-
-```text
-TaskManagementApiApplication
-```
-
-Or using Maven:
-
-```bash
-./mvnw spring-boot:run
-```
-
-On Windows:
-
-```powershell
-.\mvnw.cmd spring-boot:run
-```
-
-The application runs on:
-
-```text
-http://localhost:8080
-```
+   http://localhost:8080/swagger-ui/index.html
 
 ## Author
 
-**Amaneh Nasr**
+**Amaneh Nasrramzy**
